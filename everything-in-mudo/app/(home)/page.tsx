@@ -1,10 +1,10 @@
-import MyButton from "@/components/project-common/my-button";
 import Image from "next/image";
+import MyButton from "@/components/project-common/my-button";
 
 export default function Home() {
     return (
         <main className="flex flex-col items-center justify-center w-full h-screen ">
-            <div className="flex items-center justify-center w-1/2 gap-4  h-1/4">
+            <div className="flex items-center justify-center w-1/2 gap-4 h-1/4">
                 <div className="flex flex-col items-end justify-center w-1/2 h-full ">
                     <span className="text-3xl font-bold ">무한도전</span>
                     <span className="text-xl font-bold ">
@@ -31,7 +31,7 @@ export default function Home() {
                 width="500"
                 height="200"
                 alt="members"
-                className="fixed left-auto right-auto  bottom-4"
+                className="fixed left-auto right-auto bottom-4"
                 style={{
                     objectFit: "cover",
                 }}
