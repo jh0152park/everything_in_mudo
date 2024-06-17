@@ -2,7 +2,7 @@ interface IHint {
     [key: number]: string;
 }
 
-export const HINT = {
+export const HINT: IHint = {
     1: "ㅈ 26ㅅㄱ ㅁㅇ ㅇㄱ ㅇㅇㅇ",
     2: "ㅈㅂ ㄱㄹㅇ ㅁㅌㅇ ㄷㅇㄱㄱ ㅎㅈㅅㅇ",
     3: "ㅇㅈㅅㅇ ㅇㅂ ㄹㄷ",
@@ -55,7 +55,7 @@ export const HINT = {
     50: "ㅇㅍㅊㅎㅅ ㅇㄱ ㄲㄹㄱ ㄱㄹㅅㄴ ㄱㅈ",
 };
 
-export const ANSWER = {
+export const ANSWER: IHint = {
     1: "저 26시간 만에 여기 왔어요",
     2: "제발 가랑이 밑으로 들어가게 해주세요",
     3: "유재석은 올바 르다",
