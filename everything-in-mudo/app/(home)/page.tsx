@@ -1,7 +1,13 @@
 import Image from "next/image";
 import MyButton from "@/components/project-common/my-button";
+import { generate_quiz_sequence } from "@/utils/generate-quiz-sequence";
 
-export default function Home() {
+export default async function Home() {
+    let sequence = await generate_quiz_sequence();
+
+    console.log("quiz sequnece as below");
+    console.log(sequence);
+
     return (
         <main className="flex flex-col items-center justify-center w-full h-screen ">
             <div className="flex items-center justify-center w-1/2 gap-4 h-1/4">
