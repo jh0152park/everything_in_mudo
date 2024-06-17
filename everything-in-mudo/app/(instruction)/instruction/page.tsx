@@ -27,7 +27,7 @@ export default function Instruction() {
             <Image
                 src="/resources/image/etc/members.jpeg"
                 width="500"
-                height="300"
+                height="200"
                 alt="members"
                 className="fixed left-auto right-auto bottom-4"
             />
