@@ -7,10 +7,10 @@ interface IClickToBack {
 }
 
 export default function ClickToBack({ title }: IClickToBack) {
-    const route = useRouter();
+    const router = useRouter();
 
     function onClick() {
-        route.back();
+        router.back();
     }
 
     return (
