@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { DIFFICULTY, set_quize_level } from "@/global/project-common";
 
 interface IButton {
     title: string;
@@ -19,6 +20,17 @@ export default function MyButton({
         if (!redirect) {
             return;
         }
+
+        if (path === "quiz") {
+            if (title === "초급") {
+                set_quize_level(0);
+            } else if (title === "중급") {
+                set_quize_level(1);
+            } else {
+                set_quize_level(2);
+            }
+        }
+
         router.push(`/${path}`);
     }
 

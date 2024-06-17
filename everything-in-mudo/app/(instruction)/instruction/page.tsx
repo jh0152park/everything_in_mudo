@@ -12,16 +12,16 @@ export default function Instruction() {
                 </div>
                 <div className=" w-[1px] h-full border border-[#7f7377]" />
                 <div className="flex flex-col items-start justify-center w-1/2 h-full text-xl font-bold">
-                    <span>초급: 20문제, 초성 O</span>
-                    <span>중급: 30문제, 초성 X</span>
-                    <span>고급: 50문제, 초성 X</span>
+                    <span>초급: 20문제, 초성 O, 공백 O</span>
+                    <span>중급: 30문제, 초성 O, 공백 X</span>
+                    <span>고급: 50문제, 초성 X, 공백 X</span>
                 </div>
             </div>
 
             <div className="flex items-center justify-center gap-4 mt-20">
-                <MyButton title="초급" redirect={true} path="instruction" />
-                <MyButton title="중급" redirect={true} path="instruction" />
-                <MyButton title="고급" redirect={true} path="instruction" />
+                <MyButton title="초급" redirect={true} path="quiz" />
+                <MyButton title="중급" redirect={true} path="quiz" />
+                <MyButton title="고급" redirect={true} path="quiz" />
             </div>
 
             <Image

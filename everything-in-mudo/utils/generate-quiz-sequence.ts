@@ -1,5 +1,3 @@
-"use server";
-
 function getRandomIntInclusive(min: number, max: number) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
@@ -7,18 +5,18 @@ function getRandomIntInclusive(min: number, max: number) {
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
 
-export async function generate_quiz_sequence() {
+export function generate_quiz_sequence() {
+    let sequence = new Array<number>(50);
     let already: { [key: number]: number } = {};
-    let sequence: number[] = [];
 
-    for (let quiz = 1; quiz <= 50; quiz++) {
+    for (let i = 1; i <= 50; i++) {
         let random = getRandomIntInclusive(1, 50);
 
         if (!!!already[random]) {
-            already[random] = quiz;
-            sequence.push(random);
+            already[random] = i;
+            sequence[i - 1] = random;
         } else {
-            quiz--;
+            i--;
         }
     }
 
