@@ -27,12 +27,9 @@ export default function Instruction() {
             <Image
                 src="/resources/image/etc/members.jpeg"
                 width="500"
-                height="200"
+                height="300"
                 alt="members"
                 className="fixed left-auto right-auto bottom-4"
-                style={{
-                    objectFit: "cover",
-                }}
             />
         </main>
     );

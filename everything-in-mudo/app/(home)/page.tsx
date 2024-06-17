@@ -32,9 +32,6 @@ export default function Home() {
                 height="200"
                 alt="members"
                 className="fixed left-auto right-auto bottom-4"
-                style={{
-                    objectFit: "cover",
-                }}
             />
         </main>
     );
