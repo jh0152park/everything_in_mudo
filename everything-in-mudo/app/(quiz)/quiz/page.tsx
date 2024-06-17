@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
-import { ANSWER, HINT } from "@/global/answer";
+import { ANSWER, HINT, HINT_NO_SPACE } from "@/global/answer";
 import { DIFFICULTY, LEVELS, QUIZ_COUNT } from "@/global/project-common";
 import { generate_quiz_sequence } from "@/utils/generate-quiz-sequence";
 
@@ -72,6 +72,7 @@ export default function Quiz() {
                 width="600"
                 height="400"
                 priority={true}
+                placeholder="empty"
             />
 
             <div className="flex flex-col items-center justify-center w-full h-10 ">
@@ -79,9 +80,7 @@ export default function Quiz() {
                     <span>힌트: {HINT[sequence[quiz - 1]]}</span>
                 )}
                 {DIFFICULTY === 1 && (
-                    <span>
-                        힌트: {HINT[sequence[quiz - 1]].replaceAll(" ", "")}
-                    </span>
+                    <span>힌트: {HINT_NO_SPACE[sequence[quiz - 1]]}</span>
                 )}
             </div>
 
