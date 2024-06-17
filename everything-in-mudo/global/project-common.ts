@@ -11,9 +11,9 @@ interface ICount {
 export let DIFFICULTY: TDifficulty = 0;
 
 export const LEVELS: ILevel = {
-    0: "BASIC",
-    1: "NORMAL",
-    2: "HARD",
+    0: "초급",
+    1: "중급",
+    2: "고급",
 };
 
 export const QUIZ_COUNT: ICount = {
