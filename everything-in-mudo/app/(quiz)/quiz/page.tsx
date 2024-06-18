@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import { useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 import { ANSWER, HINT, HINT_NO_SPACE } from "@/global/answer";
-import { DIFFICULTY, LEVELS, QUIZ_COUNT } from "@/global/project-common";
+import { LEVELS, QUIZ_COUNT, levelState } from "@/global/project-common";
 import { generate_quiz_sequence } from "@/utils/generate-quiz-sequence";
 
 /*
@@ -17,14 +18,14 @@ import { generate_quiz_sequence } from "@/utils/generate-quiz-sequence";
 */
 
 export default function Quiz() {
-    const [quiz, setQuiz] = useState(1);
+    const level = useRecoilValue(levelState);
+    const [quiz, setQuiz] = useState<number>(1);
+    const [correct, setCorrect] = useState<number>(0);
     const [sequence, setSequence] = useState<number[]>([]);
-    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
-    const quiz_count = QUIZ_COUNT[DIFFICULTY];
+    const quiz_count = QUIZ_COUNT[level];
     const { register, setValue, handleSubmit } = useForm();
-    // const sequence = generate_quiz_sequence();
-    let correcct = 0;
 
     // console.log(DIFFICULTY);
     // console.log(LEVELS[DIFFICULTY]);
@@ -36,7 +37,7 @@ export default function Quiz() {
         setValue("answer", "");
 
         if (ANSWER[sequence[quiz - 1]] === data.answer) {
-            correcct++;
+            setCorrect((prev) => prev + 1);
         }
     }
 
@@ -56,7 +57,7 @@ export default function Quiz() {
     return (
         <div className="flex flex-col items-center justify-center w-full h-screen *:font-bold text-3xl gap-10 p-5">
             <div className="flex flex-col items-center">
-                <span>난이도: {LEVELS[DIFFICULTY]}</span>
+                <span>난이도: {LEVELS[level]}</span>
                 <span>
                     {quiz} / {quiz_count}
                 </span>
@@ -76,10 +77,8 @@ export default function Quiz() {
             />
 
             <div className="flex flex-col items-center justify-center w-full h-10 ">
-                {DIFFICULTY === 0 && (
-                    <span>힌트: {HINT[sequence[quiz - 1]]}</span>
-                )}
-                {DIFFICULTY === 1 && (
+                {level === 0 && <span>힌트: {HINT[sequence[quiz - 1]]}</span>}
+                {level === 1 && (
                     <span>힌트: {HINT_NO_SPACE[sequence[quiz - 1]]}</span>
                 )}
             </div>

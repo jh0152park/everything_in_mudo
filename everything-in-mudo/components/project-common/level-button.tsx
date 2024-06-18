@@ -1,23 +1,27 @@
 "use client";
 
+import { useSetRecoilState } from "recoil";
 import { useRouter } from "next/navigation";
+import { levelState } from "@/global/project-common";
 
 interface IButton {
     title: string;
-    redirect?: boolean;
-    path?: string;
+    path: string;
 }
 
-export default function MyButton({
-    title,
-    redirect = false,
-    path = "",
-}: IButton) {
+export default function LevelButton({ title, path }: IButton) {
     const router = useRouter();
+    const setLevelState = useSetRecoilState(levelState);
 
     function onClick() {
-        if (!redirect) {
-            return;
+        if (path === "quiz") {
+            if (title === "초급") {
+                setLevelState(0);
+            } else if (title === "중급") {
+                setLevelState(1);
+            } else {
+                setLevelState(2);
+            }
         }
 
         router.push(`/${path}`);
