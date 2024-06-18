@@ -1,36 +1,38 @@
 "use client";
 
 import Image from "next/image";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 import { ANSWER, HINT, HINT_NO_SPACE } from "@/global/answer";
-import { LEVELS, QUIZ_COUNT, levelState } from "@/global/project-common";
+import {
+    LEVELS,
+    QUIZ_COUNT,
+    correctState,
+    levelState,
+} from "@/global/project-common";
 import { generate_quiz_sequence } from "@/utils/generate-quiz-sequence";
+import { useRouter } from "next/navigation";
 
 /*
-
 초급: 20문제, 초성 O, 공백 O
 중급: 30문제, 초성 O, 공백 X
 고급: 50문제, 초성 X, 공백 X
-
 */
 
 export default function Quiz() {
+    const router = useRouter();
+
     const level = useRecoilValue(levelState);
+
     const [quiz, setQuiz] = useState<number>(1);
-    const [correct, setCorrect] = useState<number>(0);
     const [sequence, setSequence] = useState<number[]>([]);
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
     const quiz_count = QUIZ_COUNT[level];
+    const setCorrect = useSetRecoilState(correctState);
     const { register, setValue, handleSubmit } = useForm();
-
-    // console.log(DIFFICULTY);
-    // console.log(LEVELS[DIFFICULTY]);
-    // console.log(sequence);
-    // console.log(quiz_count);
 
     function onSubmit(data: FieldValues) {
         setIsSubmitted(true);
@@ -46,8 +48,12 @@ export default function Quiz() {
             return;
         }
 
-        setQuiz((prev) => prev + 1);
-        setIsSubmitted(false);
+        if (quiz >= quiz_count) {
+            router.push("/result");
+        } else {
+            setQuiz((prev) => prev + 1);
+            setIsSubmitted(false);
+        }
     }
 
     useEffect(() => {
