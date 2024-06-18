@@ -57,6 +57,7 @@ export default function Quiz() {
     }
 
     useEffect(() => {
+        setCorrect(0);
         setSequence(generate_quiz_sequence());
     }, []);
 
