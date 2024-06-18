@@ -22,8 +22,14 @@ export const QUIZ_COUNT: ICount = {
 };
 
 const { persistAtom } = recoilPersist();
+
 export const levelState = atom<0 | 1 | 2>({
     key: "levelState",
     default: 0,
     effects_UNSTABLE: [persistAtom],
+});
+
+export const correctState = atom<number>({
+    key: "correctState",
+    default: 0,
 });
