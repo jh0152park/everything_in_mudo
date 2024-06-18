@@ -11,6 +11,7 @@ import {
     QUIZ_COUNT,
     correctState,
     levelState,
+    quizSequenceState,
 } from "@/global/project-common";
 import { generate_quiz_sequence } from "@/utils/generate-quiz-sequence";
 import { useRouter } from "next/navigation";
@@ -25,13 +26,14 @@ export default function Quiz() {
     const router = useRouter();
 
     const level = useRecoilValue(levelState);
-
     const [quiz, setQuiz] = useState<number>(1);
-    const [sequence, setSequence] = useState<number[]>([]);
+    // const [sequence, setSequence] = useState<number[]>([]);
+
     const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
     const quiz_count = QUIZ_COUNT[level];
     const setCorrect = useSetRecoilState(correctState);
+    const sequence = useRecoilValue(quizSequenceState);
     const { register, setValue, handleSubmit } = useForm();
 
     function onSubmit(data: FieldValues) {
@@ -56,10 +58,10 @@ export default function Quiz() {
         }
     }
 
-    useEffect(() => {
-        setCorrect(0);
-        setSequence(generate_quiz_sequence());
-    }, []);
+    // useEffect(() => {
+    //     setCorrect(0);
+    //     setSequence(generate_quiz_sequence());
+    // }, []);
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-screen *:font-bold text-3xl gap-10 p-5">

@@ -33,3 +33,9 @@ export const correctState = atom<number>({
     key: "correctState",
     default: 0,
 });
+
+export const quizSequenceState = atom<number[]>({
+    key: "quizSequenceState",
+    default: [],
+    effects_UNSTABLE: [persistAtom],
+});

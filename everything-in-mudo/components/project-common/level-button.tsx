@@ -2,7 +2,8 @@
 
 import { useSetRecoilState } from "recoil";
 import { useRouter } from "next/navigation";
-import { levelState } from "@/global/project-common";
+import { levelState, quizSequenceState } from "@/global/project-common";
+import { generate_quiz_sequence } from "@/utils/generate-quiz-sequence";
 
 interface IButton {
     title: string;
@@ -12,16 +13,17 @@ interface IButton {
 export default function LevelButton({ title, path }: IButton) {
     const router = useRouter();
     const setLevelState = useSetRecoilState(levelState);
+    const setQuizSeqeence = useSetRecoilState(quizSequenceState);
 
     function onClick() {
-        if (path === "quiz") {
-            if (title === "초급") {
-                setLevelState(0);
-            } else if (title === "중급") {
-                setLevelState(1);
-            } else {
-                setLevelState(2);
-            }
+        setQuizSeqeence(generate_quiz_sequence());
+
+        if (title === "초급") {
+            setLevelState(0);
+        } else if (title === "중급") {
+            setLevelState(1);
+        } else {
+            setLevelState(2);
         }
 
         router.push(`/${path}`);
