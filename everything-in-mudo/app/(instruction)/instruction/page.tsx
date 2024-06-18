@@ -1,5 +1,5 @@
 import Image from "next/image";
-import MyButton from "@/components/project-common/my-button";
+import LevelButton from "@/components/project-common/level-button";
 
 export default function Instruction() {
     return (
@@ -19,9 +19,9 @@ export default function Instruction() {
             </div>
 
             <div className="flex items-center justify-center gap-4 mt-20">
-                <MyButton title="초급" redirect={true} path="quiz" />
-                <MyButton title="중급" redirect={true} path="quiz" />
-                <MyButton title="고급" redirect={true} path="quiz" />
+                <LevelButton title="초급" path="quiz" />
+                <LevelButton title="중급" path="quiz" />
+                <LevelButton title="고급" path="quiz" />
             </div>
 
             <Image

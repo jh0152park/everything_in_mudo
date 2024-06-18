@@ -1,4 +1,5 @@
-type TDifficulty = 0 | 1 | 2;
+import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
 
 interface ILevel {
     [key: number]: string;
@@ -7,8 +8,6 @@ interface ILevel {
 interface ICount {
     [key: number]: number;
 }
-
-export let DIFFICULTY: TDifficulty = 0;
 
 export const LEVELS: ILevel = {
     0: "초급",
@@ -22,6 +21,9 @@ export const QUIZ_COUNT: ICount = {
     2: 50,
 };
 
-export function set_quize_level(level: TDifficulty) {
-    DIFFICULTY = level;
-}
+const { persistAtom } = recoilPersist();
+export const levelState = atom<0 | 1 | 2>({
+    key: "levelState",
+    default: 0,
+    effects_UNSTABLE: [persistAtom],
+});
