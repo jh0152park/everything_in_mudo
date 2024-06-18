@@ -22,16 +22,21 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="mt-20 ">
+            <div className="z-10 mt-20">
                 <MyButton title="시작하기" redirect={true} path="instruction" />
             </div>
 
             <Image
                 src="/resources/image/etc/members.jpeg"
-                width="500"
-                height="200"
                 alt="members"
-                className="fixed left-auto right-auto bottom-4"
+                className="fixed left-auto right-auto z-0 bottom-4"
+                width="600"
+                height="250"
+                style={{
+                    width: "auto",
+                    height: "auto",
+                    objectFit: "cover",
+                }}
             />
         </main>
     );
